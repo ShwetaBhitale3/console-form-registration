@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Form Validation</title>
+    <title>Form Validation with Console Output</title>
 </head>
 <body>
 
@@ -27,31 +27,27 @@
 <script>
 document.getElementById("myForm").addEventListener("submit", function(event) {
 
+    event.preventDefault(); // stop page refresh
+
     let u = document.getElementById("username").value.trim();
     let e = document.getElementById("email").value.trim();
     let p = document.getElementById("password").value.trim();
 
-    console.log("Username:", u);
-    console.log("Email:", e);
-    console.log("Password:", p);
-
     if (u === "" || e === "" || p === "") {
-        console.log("Validation Failed: Empty fields");
         document.getElementById("message").innerHTML = "All fields are required!";
-        event.preventDefault(); // stop submission
-        return;
-    }
+        console.log("Validation Failed: Some fields are empty");
+    } 
+    else {
+        document.getElementById("message").style.color = "green";
+        document.getElementById("message").innerHTML = "Form submitted successfully!";
 
-    if (p.length < 6) {
-        console.log("Validation Failed: Password too short");
-        document.getElementById("message").innerHTML = "Password must be at least 6 characters!";
-        event.preventDefault(); // stop submission
-        return;
+        // Display content in console
+        console.log("----- Form Data -----");
+        console.log("Username: " + u);
+        console.log("Email: " + e);
+        console.log("Password: " + p);
+        console.log("---------------------");
     }
-
-    console.log("Form submitted successfully!");
-    document.getElementById("message").style.color = "green";
-    document.getElementById("message").innerHTML = "Form submitted successfully!";
 });
 </script>
 
